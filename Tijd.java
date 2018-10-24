@@ -3,31 +3,30 @@ package weekopdracht_cafe;
 import java.time.LocalTime;
 
 public class Tijd {
-	
-	void vorderen(Cafe cafe) {
+
+	public void vorderen(Cafe cafe) {
 		LocalTime currentTime = cafe.getOpeningstijd();
-		
-		System.out.println("De tijd loopt vanaf " + currentTime + ". Even geduld a.u.b.");
-		while (currentTime.minusHours(3).isBefore(cafe.getSluitingstijd().minusHours(3))) {
-			//System.out.println("De tijd is: " + currentTime);
-			currentTime = currentTime.plusMinutes(5);
-			
+		System.out.println("De zaak opent om " + currentTime + ". We wachten op de eerste klant.");
+		int uurOffset = cafe.getSluitingstijd().getHour() + 1;
+		while (currentTime.minusHours(uurOffset).isBefore(cafe.getSluitingstijd().minusHours(uurOffset))) {
+			// System.out.println("De tijd is: " + currentTime);
+
 			try {
-				Thread.sleep(300);
-				if (Main.random.nextInt(100) > 80) {
-					System.out.println("Er komt een klant binnen om " + currentTime + " uur.");
+				Thread.sleep(50);
+				currentTime = currentTime.plusMinutes(1);
+				if (Main.random.nextInt(100) > 95) {
+					Klant nieuweklant = new KlantFactory().KlantFactory(currentTime);
+					nieuweklant.binnenkomen(nieuweklant, currentTime);
 					
-					Klant nieuweklant = new KlantFactory().KlantFactory();
-					System.out.println(nieuweklant);
-					System.out.println(nieuweklant.naam + " (" + nieuweklant.leeftijd + " jaar, geduldigheid: " + nieuweklant.geduldigheid + ") komt binnen.");
-					Cafe.klantenlijst.add(nieuweklant);
-					String test = Main.scanner.nextLine();															//vervangen door gebruikersActie
-					currentTime = currentTime.plusMinutes(5);
-					System.out.println("Het is nu " + currentTime + ". Wachten op de volgende klant.");
+					String test = Main.scanner.nextLine(); // vervangen door gebruikersActie
 				}
 			} catch (Exception e) {
-
 			}
 		}
+		System.out.println("De zaak sluit om " + currentTime + " uur. Tijd om de balans op te maken.\n");
+	}
+
+	void sluitingstijd() {
+		System.out.println("Het is sluitingstijd. Het café is gesloten, maar de klanten in de wachtrij mogen nog geholpen worden.");
 	}
 }

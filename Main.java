@@ -8,14 +8,14 @@ public class Main {
 	static Random random = new Random();
 
 	public static void main(String[] args) {
-		
+		Cafe cafe = new Cafe();
 		Menu menu = new Menu();
+		
+		menu.setCafe(cafe);
 		menu.printHoofdmenu();
 		
-		Cafe cafe = new Cafe();
 		Manager manager = new Manager();
 		manager.checkTime(cafe);
-		
 	}
 
 	public static void pressEnter() {

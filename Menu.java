@@ -3,7 +3,11 @@ package weekopdracht_cafe;
 public class Menu {
 	String[] hoofdmenuOpties = { "Start spel", "Instellingen", "Stop spel" };
 	String[] instellingsOpties = {"Verander cafénaam", "Verander tijdsduur", "Terug naar hoofdmenu"};
-
+	Cafe cafe;
+	
+	public void setCafe(Cafe cafe) {
+		this.cafe = cafe;
+	}
 	public void printHoofdmenu() {
 		System.out.println("Maak je keuze: ");
 		for (int i = 0; i < hoofdmenuOpties.length; i++) {
@@ -21,7 +25,7 @@ public class Menu {
 	public void hoofdmenuRedirect(int menukeuze) {
 		switch (menukeuze) {
 		case 1:
-			startmenu();
+			printIntro();
 			break;
 		case 2:
 			printInstellingsmenu();
@@ -35,9 +39,9 @@ public class Menu {
 		}
 	}
 
-	public void startmenu() {
+	public void printIntro() {
 		System.out.println(
-				"Welkom in café Pubby.\nWij serveren alleen drankjes.\nHet doel is om elke avond zoveel mogelijk klanten tevreden te stellen.");
+				"Welkom in café " + cafe.getNaam() + ".\nWij serveren alleen drankjes.\nHet doel is om elke avond zoveel mogelijk klanten tevreden te stellen.");
 		Main.pressEnter();
 		System.out.println(
 				"We hanteren natuurlijk wel een aantal regels:\n1.\tGeen alcohol onder de 18.\n2.\tGeen dronkaards in ons café.\n3.\tDagelijks geopend van 18:00 - 02:00");
@@ -61,6 +65,9 @@ public class Menu {
 	public void instellingsmenuRedirect(int menukeuze) {
 		switch (menukeuze) {
 		case 1:
+			System.out.println("Hoe wil je het café noemen?");
+			cafe.setNaam(Main.scanner.nextLine());
+			printInstellingsmenu();
 			//verander cafenaam
 			break;
 		case 2:

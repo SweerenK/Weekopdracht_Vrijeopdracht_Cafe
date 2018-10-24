@@ -1,7 +1,5 @@
 package weekopdracht_cafe;
 
-import java.util.ArrayList;
-
 public abstract class Drankje {
 	private String naam;
 	private Double verkoopprijs;
