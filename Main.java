@@ -5,17 +5,23 @@ import java.util.Scanner;
 
 public class Main {
 	static Scanner scanner = new Scanner(System.in);
-	static Random random = new Random();
-
+	public static Random random = new Random();
+	
 	public static void main(String[] args) {
 		Cafe cafe = new Cafe();
 		Menu menu = new Menu();
+		Manager manager = new Manager();
+		Tijd tijd = new Tijd();
 		
 		menu.setCafe(cafe);
 		menu.printHoofdmenu();
+		tijd.run(manager, cafe);
 		
-		Manager manager = new Manager();
-		manager.checkTime(cafe);
+		//while(cafe.getSluitingstijd().isAfter(cafe.getCurrentTime))
+		checkTime(cafe, manager);
+	}
+	static void checkTime(Cafe cafe, Manager manager) {
+		new Tijd().run();
 	}
 
 	public static void pressEnter() {
