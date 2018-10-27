@@ -4,6 +4,8 @@ public abstract class Drankje {
 	private String naam;
 	private Double verkoopprijs;
 	private int inhoudMililiter, aantalOpVoorraad;
+	private boolean alcoholisch;
+
 	public int getAantalOpVoorraad() {
 		return aantalOpVoorraad;
 	}
@@ -11,8 +13,6 @@ public abstract class Drankje {
 	public void setAantalOpVoorraad(int aantalOpVoorraad) {
 		this.aantalOpVoorraad = aantalOpVoorraad;
 	}
-
-	private boolean alcoholisch;
 
 	public String getNaam() {
 		return naam;

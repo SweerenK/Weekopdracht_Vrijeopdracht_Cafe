@@ -15,17 +15,23 @@ import weekopdracht_cafe.Klanten.Klant;
 
 public class Cafe {
 	private String naam = "Pubby";
-	private String[][] dranken = { {"Grolsch", "Amstel", "Heineken"}, {"Rode wijn", "Witte wijn"}, {"Cognac", "Whiskey"},
-			{"Koffie", "Thee"}, {"Cola", "Sinas", "7-Up"}, {"Gin-Tonic", "Baco"} };
+	private String[][] dranken = { {"Grolsch", "Amstel", "Heineken"}, {"rode wijn", "witte wijn"}, {"cognac", "whiskey"},
+			{"koffie", "thee"}, {"cola", "sinas", "7-Up"}, {"gin-tonic", "baco"} };
+
 	private int reputatie = 50;
+	public int dagenOpen = 1;
+	public boolean inBusiness = true;
 	
 	public static List<Klant> klantenlijst = new ArrayList<Klant>();
-	public static List<Klant> wachtrij = new LinkedList<Klant>();
 	public static List<String> drankenlijst = new ArrayList<String>();
 
 	private LocalTime openingstijd = LocalTime.of(18, 0);
 	private LocalTime sluitingstijd = LocalTime.of(2, 0);
 
+	public String[][] getDranken() {
+		return dranken;
+	}
+	
 	public String getNaam() {
 		return naam;
 	}
@@ -58,7 +64,7 @@ public class Cafe {
 		this.reputatie = reputatie;
 	}
 
-	Cafe() {
+	public Cafe() {
 		for (String[] x : dranken) {
 			for(String y : x) {
 				drankenlijst.add(y);

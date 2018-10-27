@@ -6,22 +6,22 @@ import java.util.Scanner;
 public class Main {
 	static Scanner scanner = new Scanner(System.in);
 	public static Random random = new Random();
-	
+
 	public static void main(String[] args) {
 		Cafe cafe = new Cafe();
 		Menu menu = new Menu();
 		Manager manager = new Manager();
 		Tijd tijd = new Tijd();
-		
 		menu.setCafe(cafe);
 		menu.printHoofdmenu();
-		tijd.run(manager, cafe);
-		
-		//while(cafe.getSluitingstijd().isAfter(cafe.getCurrentTime))
-		checkTime(cafe, manager);
-	}
-	static void checkTime(Cafe cafe, Manager manager) {
-		new Tijd().run();
+
+		while (cafe.inBusiness) {
+			manager.openCafe(tijd, cafe);
+			tijd.run(cafe, manager);
+			manager.sluitCafe(tijd, cafe);
+			String test = scanner.nextLine();
+		}
+
 	}
 
 	public static void pressEnter() {
@@ -35,11 +35,11 @@ public class Main {
 			}
 		}
 	}
-	
+
 	public static boolean checkYesOrNo(String checkable) {
-		if(checkable.equals("j")) {
+		if (checkable.equals("j")) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}

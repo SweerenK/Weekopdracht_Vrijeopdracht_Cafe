@@ -2,7 +2,7 @@ package weekopdracht_cafe;
 
 public class Menu {
 	String[] hoofdmenuOpties = { "Start spel", "Instellingen", "Stop spel" };
-	String[] instellingsOpties = {"Verander cafénaam", "Verander tijdsduur", "Terug naar hoofdmenu"};
+	String[] instellingsOpties = {"Verander cafénaam", "Terug naar hoofdmenu"};
 	Cafe cafe;
 	
 	public void setCafe(Cafe cafe) {
@@ -71,14 +71,24 @@ public class Menu {
 			//verander cafenaam
 			break;
 		case 2:
-			//verander tijdsduur (opening, sluiting, snelheid van tijd per seconde)
-			break;
-		case 3:
 			printHoofdmenu();
 		default:
 
 		}
 	}
 	
-	
+	public void spelMenu() {
+		System.out.println("Maak je keuze: \n1.\t Nieuwe dag (doorspelen)\n2.\t Verkoop café (afsluiten)");
+		int keuze = menuListener();
+		switch(keuze) {
+		case 1:
+			cafe.dagenOpen++;
+			break;
+		case 2:
+			cafe.inBusiness = false;
+			System.out.printf("Na %s dagen verkoop je het café met reputatie %s voor %.2f euro.",cafe.dagenOpen, cafe.getReputatie(), 999.99);
+			break;
+		default:
+		}
+	}	
 }

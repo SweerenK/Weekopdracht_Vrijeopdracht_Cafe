@@ -2,41 +2,49 @@ package weekopdracht_cafe;
 
 import java.time.LocalTime;
 
-import weekopdracht_cafe.Dranken.*;
+import weekopdracht_cafe.Dranken.Drankje;
+import weekopdracht_cafe.Dranken.DrankjeFactory;
 import weekopdracht_cafe.Klanten.*;
 
-public class Tijd implements Runnable {
-	
-	public void run() {
-	}
-	
-	public void run(Manager manager, Cafe cafe) {
-		LocalTime currentTime = cafe.getOpeningstijd();
-		int uurOffset = cafe.getSluitingstijd().getHour() + 1;
-		System.out.println("De zaak opent om " + currentTime + " uur. We wachten op de eerste klant.\n");
-		
-		while (currentTime.minusHours(uurOffset).isBefore(cafe.getSluitingstijd().minusHours(uurOffset))) {
+public class Tijd extends Thread {
+	int aantalVerwachteGasten = 2;
+	int aantalGenereerPogingen = 0;
+	boolean klantAanwezig = false;
+
+	public void run(Cafe cafe, Manager manager) {
+		while (aantalGenereerPogingen < 480) {
 			try {
-				currentTime = currentTime.plusMinutes(1);
-				Thread.sleep(200);
-				if (Main.random.nextInt(100) > 96) {
-					Thread.currentThread().interrupt();
-					Klant nieuweklant = new KlantFactory().KlantFactory(currentTime);
-					nieuweklant.binnenkomen(nieuweklant, currentTime);
-					manager.overweegActies();
+				Thread.sleep(100);
+				genereerKlanten(cafe);
+
+				if (klantAanwezig) {
+					Klant klant = Cafe.klantenlijst.get(cafe.klantenlijst.size() - 1);
+					
+					Drankje drankje = new DrankjeFactory().getDrankje(klant.drankenWens.get(0));
+					while (klant.aanwezig) {
+						manager.overweegActies(klant);
+						manager.actieNaOverweging(klant, drankje);
+					}
 				}
-				if(currentTime.getMinute() == 0) {
-					System.out.println("Het is nu " + currentTime + " uur.");
-				}
+
 			} catch (Exception e) {
+				System.out.println("Er ging iets mis.");
 			}
+			klantAanwezig = false;
 		}
-		
-		System.out.println("De zaak sluit om "+currentTime+" uur. Tijd om de balans op te maken.\n");
 	}
 
-	void sluitingstijd() {
-		System.out.println(
-				"Het is sluitingstijd. Het café is gesloten, maar de klanten in de wachtrij mogen nog geholpen worden.");
+	public void genereerKlanten(Cafe cafe) {
+		aantalGenereerPogingen++;
+		if (Main.random.nextInt(1000) > 959) {
+			Klant nieuweklant = new KlantFactory().KlantFactory(getIngameTijd(cafe));
+			nieuweklant.binnenkomen(nieuweklant, getIngameTijd(cafe));
+			klantAanwezig = true;
+		}
+	}
+
+	public LocalTime getIngameTijd(Cafe cafe) {
+		LocalTime ingameTijd = cafe.getOpeningstijd().plusMinutes(aantalGenereerPogingen);
+		return ingameTijd;
 	}
 }
