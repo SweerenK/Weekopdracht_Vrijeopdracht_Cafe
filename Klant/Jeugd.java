@@ -1,7 +1,8 @@
-package weekopdracht_cafe.Klanten;
+package weekopdracht_cafe.Klant;
 
 import java.time.LocalTime;
-import weekopdracht_cafe.Dranken.Drankje;
+
+import weekopdracht_cafe.Drank.Drankje;
 
 public class Jeugd extends Klant {
 	Jeugd(int leeftijd, String naam, int geslacht, int geduldigheid, double geldOpZak, int aantalBestellingenWens){

@@ -1,5 +1,6 @@
 package weekopdracht_cafe;
 
+import java.time.LocalTime;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class Main {
 		menu.printHoofdmenu();
 
 		while (cafe.inBusiness) {
+			cafe.setOpeningstijd(cafe.getOpeningstijd());
 			manager.openCafe(tijd, cafe);
 			tijd.run(cafe, manager);
 			manager.sluitCafe(tijd, cafe);

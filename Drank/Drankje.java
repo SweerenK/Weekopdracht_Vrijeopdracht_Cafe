@@ -1,18 +1,10 @@
-package weekopdracht_cafe.Dranken;
+package weekopdracht_cafe.Drank;
 
 public abstract class Drankje {
 	private String naam;
 	private Double verkoopprijs;
-	private int inhoudMililiter, aantalOpVoorraad;
+	private int inhoudMililiter;
 	private boolean alcoholisch;
-
-	public int getAantalOpVoorraad() {
-		return aantalOpVoorraad;
-	}
-
-	public void setAantalOpVoorraad(int aantalOpVoorraad) {
-		this.aantalOpVoorraad = aantalOpVoorraad;
-	}
 
 	public String getNaam() {
 		return naam;

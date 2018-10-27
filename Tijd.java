@@ -1,10 +1,11 @@
 package weekopdracht_cafe;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
-import weekopdracht_cafe.Dranken.Drankje;
-import weekopdracht_cafe.Dranken.DrankjeFactory;
-import weekopdracht_cafe.Klanten.*;
+import weekopdracht_cafe.Drank.Drankje;
+import weekopdracht_cafe.Drank.DrankjeFactory;
+import weekopdracht_cafe.Klant.*;
 
 public class Tijd extends Thread {
 	int aantalVerwachteGasten = 2;
@@ -14,21 +15,19 @@ public class Tijd extends Thread {
 	public void run(Cafe cafe, Manager manager) {
 		while (aantalGenereerPogingen < 480) {
 			try {
-				Thread.sleep(100);
 				genereerKlanten(cafe);
+				Thread.sleep(125);
 
 				if (klantAanwezig) {
 					Klant klant = Cafe.klantenlijst.get(cafe.klantenlijst.size() - 1);
-					
-					Drankje drankje = new DrankjeFactory().getDrankje(klant.drankenWens.get(0));
-					while (klant.aanwezig) {
+					while (klant.aanwezig && klant.drankenWens.size() != 0) {
+						Drankje drankje = new DrankjeFactory().getDrankje(klant.drankenWens.get(0));
 						manager.overweegActies(klant);
-						manager.actieNaOverweging(klant, drankje);
+						manager.actieNaOverweging(cafe, klant, drankje, getIngameTijd(cafe));
 					}
 				}
 
-			} catch (Exception e) {
-				System.out.println("Er ging iets mis.");
+			} catch (Exception e) {	
 			}
 			klantAanwezig = false;
 		}
@@ -37,8 +36,10 @@ public class Tijd extends Thread {
 	public void genereerKlanten(Cafe cafe) {
 		aantalGenereerPogingen++;
 		if (Main.random.nextInt(1000) > 959) {
-			Klant nieuweklant = new KlantFactory().KlantFactory(getIngameTijd(cafe));
-			nieuweklant.binnenkomen(nieuweklant, getIngameTijd(cafe));
+			Klant nieuweklant = new KlantFactory().KlantFactory(cafe, getIngameTijd(cafe));
+			nieuweklant.gedronkenDrankjes = new ArrayList<Drankje>();
+			nieuweklant.binnenkomen(cafe, nieuweklant, getIngameTijd(cafe));
+			nieuweklant.genereerWens(cafe);
 			klantAanwezig = true;
 		}
 	}

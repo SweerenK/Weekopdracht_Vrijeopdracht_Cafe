@@ -1,4 +1,4 @@
-package weekopdracht_cafe.Dranken;
+package weekopdracht_cafe.Drank;
 
 public class GemixtDrankje extends Drankje {
 	int inhoudMililiter = 330;
@@ -10,18 +10,17 @@ public class GemixtDrankje extends Drankje {
 	}
 	
 	GemixtDrankje(String naam){
-		this.setAlcoholisch(true);
-		this.setInhoudMililiter(300);
-		this.setAantalOpVoorraad(5);
+		setAlcoholisch(true);
+		setInhoudMililiter(300);
 		
 		switch(naam) {
-		case "Gin tonic":
-			this.setVerkoopprijs(2.95);
-			this.setNaam(naam);
+		case "gin-tonic":
+			setVerkoopprijs(2.95);
+			setNaam(naam);
 			break;
-		case "Baco":
-			this.setVerkoopprijs(2.65);
-			this.setNaam(naam);
+		case "baco":
+			setVerkoopprijs(2.65);
+			setNaam(naam);
 			break;
 		default:
 		}

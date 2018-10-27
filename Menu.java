@@ -68,7 +68,6 @@ public class Menu {
 			System.out.println("Hoe wil je het café noemen?");
 			cafe.setNaam(Main.scanner.nextLine());
 			printInstellingsmenu();
-			//verander cafenaam
 			break;
 		case 2:
 			printHoofdmenu();

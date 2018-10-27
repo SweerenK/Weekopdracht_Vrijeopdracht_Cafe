@@ -1,4 +1,4 @@
-package weekopdracht_cafe.Klanten;
+package weekopdracht_cafe.Klant;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -6,14 +6,15 @@ import java.util.Collections;
 import java.util.List;
 
 import weekopdracht_cafe.*;
-import weekopdracht_cafe.Dranken.Drankje;
+import weekopdracht_cafe.Drank.Drankje;
 
 public abstract class Klant {
 	public String naam;
 	public int leeftijd, geslacht, geduldigheid, aantalBestellingenWens, aantalGedronkenDrankjes,
 			aantalGeweigerdeDrankjes;
 	public double geldOpZak;
-	public List<String> drankenWens, gedronkenDrankjes;
+	public List<String> drankenWens;
+	public List<Drankje> gedronkenDrankjes;
 	public boolean aanwezig = true;
 	public LocalTime binnenkomst;
 
@@ -29,7 +30,7 @@ public abstract class Klant {
 					{ "\"Ik snap dat je dit moest vragen.\"", "\"Geen probleem.\"" } } };
 
 	public Klant() {
-
+		gedronkenDrankjes = new ArrayList<Drankje>();
 	}
 
 	Klant(int leeftijd, String naam, int geslacht, int geduldigheid, double geldOpZak, int aantalBestellingenWens) {
@@ -130,26 +131,24 @@ public abstract class Klant {
 		}
 	}
 
-	public void binnenkomen(Klant nieuweklant, LocalTime currentTime) {
+	public void binnenkomen(Cafe cafe, Klant nieuweklant, LocalTime currentTime) {
 		binnenkomst = currentTime;
-		drankenWens = new ArrayList<String>(Cafe.drankenlijst);
-		gedronkenDrankjes = new ArrayList<String>();
+		drankenWens = new ArrayList<String>(cafe.drankenlijst);
 		Cafe.klantenlijst.add(nieuweklant);
-		System.out.printf("%n%s komt binnen om %s uur", nieuweklant.naam, currentTime);
-		genereerWens();
+		System.out.printf("%n%s komt binnen om %s uur.", nieuweklant.naam, currentTime);
 	}
 
-	void genereerWens() {
+	public void genereerWens(Cafe cafe) {
 		int temp = aantalBestellingenWens;
 		drankenWens.clear();
 
 		while (temp > 0) {
-			int randomInt = Main.random.nextInt(Cafe.drankenlijst.size());
-			drankenWens.add((aantalBestellingenWens - temp), Cafe.drankenlijst.get(randomInt));
+			int randomInt = Main.random.nextInt(cafe.getDrankenlijst().size());
+			drankenWens.add((aantalBestellingenWens - temp), cafe.getDrankenlijst().get(randomInt));
 			temp--;
 		}
 
-		System.out.printf(" en vraagt: \t\"Heb je voor mij een %s?\"",
+		System.out.printf("%n%s vraagt: \t\"Heb je voor mij een %s?\"%n",naam,
 				drankenWens.get(aantalGedronkenDrankjes + aantalGeweigerdeDrankjes).toString());
 	}
 

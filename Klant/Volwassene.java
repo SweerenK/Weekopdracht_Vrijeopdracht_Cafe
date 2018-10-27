@@ -1,5 +1,5 @@
-package weekopdracht_cafe.Klanten;
-import weekopdracht_cafe.Dranken.Drankje;
+package weekopdracht_cafe.Klant;
+import weekopdracht_cafe.Drank.Drankje;
 
 public class Volwassene extends Klant {
 	Volwassene(int leeftijd, String naam, int geslacht, int geduldigheid, double geldOpZak, int aantalBestellingenWens){

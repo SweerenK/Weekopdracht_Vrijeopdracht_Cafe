@@ -1,17 +1,17 @@
-package weekopdracht_cafe.Dranken;
+package weekopdracht_cafe.Drank;
 
 import weekopdracht_cafe.Cafe;
 
 public class DrankjeFactory {
 	Cafe cafe = new Cafe();
-	private String[][] drankjeslijst = cafe.getDranken();
+	private String[][][] drankjeslijst = cafe.getDranken();
 	
 	public Drankje getDrankje(String naamDrankje){
 		Drankje x;
 		
 		for(int i = 0; i < drankjeslijst.length; i++) {
 			for(int j = 0; j < drankjeslijst[i].length; j++) {
-				if(naamDrankje.equals(drankjeslijst[i][j])) {
+				if(naamDrankje.equals(drankjeslijst[i][j][0])) {
 					switch(i) {
 					case 0:
 						x = new Bier(naamDrankje);

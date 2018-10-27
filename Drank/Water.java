@@ -1,4 +1,4 @@
-package weekopdracht_cafe.Dranken;
+package weekopdracht_cafe.Drank;
 
 public class Water extends Drankje {
 	int inhoudMililiter = 300;
@@ -8,8 +8,7 @@ public class Water extends Drankje {
 	}
 
 	Water(String naam) {
-		this.setAlcoholisch(false);
-		this.setInhoudMililiter(300);
-		this.setAantalOpVoorraad(999999);
+		setAlcoholisch(false);
+		setInhoudMililiter(300);
 	}
 }

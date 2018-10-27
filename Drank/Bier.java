@@ -1,4 +1,4 @@
-package weekopdracht_cafe.Dranken;
+package weekopdracht_cafe.Drank;
 
 import java.util.Arrays;
 
@@ -10,22 +10,21 @@ public class Bier extends Drankje {
 	}
 	
 	Bier(String naam){
-		this.setAlcoholisch(true);
-		this.setInhoudMililiter(300);
-		this.setAantalOpVoorraad(5);
+		setAlcoholisch(true);
+		setInhoudMililiter(300);
 		
 		switch(naam) {
 		case "Grolsch":
-			this.setVerkoopprijs(1.30);
-			this.setNaam(naam);
+			setVerkoopprijs(1.30);
+			setNaam(naam);
 			break;
 		case "Amstel":
-			this.setVerkoopprijs(1.20);
-			this.setNaam(naam);
+			setVerkoopprijs(1.20);
+			setNaam(naam);
 			break;
 		case "Heineken":
-			this.setVerkoopprijs(1.25);
-			this.setNaam(naam);
+			setVerkoopprijs(1.25);
+			setNaam(naam);
 			break;
 		default:
 		}
