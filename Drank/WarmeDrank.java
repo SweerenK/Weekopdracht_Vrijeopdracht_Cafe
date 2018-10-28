@@ -1,9 +1,9 @@
-package weekopdracht_cafe;
+package weekopdracht_cafe.Drank;
 
 import java.time.LocalTime;
 
 public interface WarmeDrank {
-	LocalTime opwarmtijd = LocalTime.of(0,0,0);
+	//LocalTime opwarmtijd = LocalTime.of(0,0,0);
 	
 	void opwarmen();
 	default void roeren() {

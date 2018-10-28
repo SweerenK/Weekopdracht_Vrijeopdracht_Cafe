@@ -1,6 +1,6 @@
 package weekopdracht_cafe.Drank;
 
-public class GemixtDrankje extends Drankje {
+public class GemixtDrankje extends Drankje implements MetViltje {
 	int inhoudMililiter = 330;
 
 	void schenken(Drankje... drinks) {

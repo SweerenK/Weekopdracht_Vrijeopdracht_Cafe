@@ -2,7 +2,7 @@ package weekopdracht_cafe.Drank;
 
 import java.util.Arrays;
 
-public class Bier extends Drankje {
+public class Bier extends Drankje implements MetViltje{
 	int inhoudMililiter = 330;
 
 	void schenken(Drankje... drank) {

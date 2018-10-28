@@ -2,20 +2,58 @@ package weekopdracht_cafe.Klant;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import weekopdracht_cafe.*;
 import weekopdracht_cafe.Drank.Drankje;
 
 public abstract class Klant {
-	public String naam;
+	private String naam;
+	private int leeftijd, geduldigheid, aantalBestellingenWens, aantalGedronkenDrankjes, aantalGeweigerdeDrankjes;
+
+	private double geldOpZak;
+	private List<String> drankenWens;
+	private List<Drankje> gedronkenDrankjes;
+
+	private boolean aanwezig = true, checkedID = false;
+	private LocalTime binnenkomst;
+	private String[] nietBlijeReactie = { " lijkt geirriteerd", " lijkt geergerd", " reageert humeurig", " moppert",
+			" reageert chagrijnig", " zucht" };
+	private String[] wegloopReactie = { " en loopt weg.", " en verlaat het café.", " en vertrekt uit het café." };
+	private String[][][] reactieLeeftijd = { { { "\"Knijp gewoon een oogje dicht..\"", "\"Wat een slechte zaak\"" },
+			{ "\"Flauw hoor..\"", "\"Jammer dit..\"" }, { "\"Sorry, ik ben inderdaad te jong\"" }, { "\"Helaas..\"" } },
+			{ { "\"Geef me gewoon mijn drankje!\"", "\"Wat doe je nou moeilijk?!\"", "\"Schiet op!\"" },
+					{ "\"Ik ben inderdaad volwassen.\"", "\"Zie je wel?\"" },
+					{ "\"Ik snap dat je dit moest vragen.\"", "\"Geen probleem.\"" } } };
+	
+	
+	public LocalTime getBinnenkomst() {
+		return binnenkomst;
+	}
+
+	public void setBinnenkomst(LocalTime binnenkomst) {
+		this.binnenkomst = binnenkomst;
+	}
+	
+	public int getAantalGedronkenDrankjes() {
+		return aantalGedronkenDrankjes;
+	}
+
+	public void setAantalGedronkenDrankjes(int aantalGedronkenDrankjes) {
+		this.aantalGedronkenDrankjes = aantalGedronkenDrankjes;
+	}
+	
+	public List<Drankje> getGedronkenDrankjes() {
+		return gedronkenDrankjes;
+	}
+
+	public void setGedronkenDrankjes(List<Drankje> gedronkenDrankjes) {
+		this.gedronkenDrankjes = gedronkenDrankjes;
+	}
 	public String getNaam() {
 		return naam;
 	}
-
-	public int leeftijd, geslacht, geduldigheid, aantalBestellingenWens, aantalGedronkenDrankjes,
-			aantalGeweigerdeDrankjes;
+	
 	public int getAantalGeweigerdeDrankjes() {
 		return aantalGeweigerdeDrankjes;
 	}
@@ -24,10 +62,16 @@ public abstract class Klant {
 		this.aantalGeweigerdeDrankjes = aantalGeweigerdeDrankjes;
 	}
 
-	public double geldOpZak;
-	public List<String> drankenWens;
-	public List<Drankje> gedronkenDrankjes;
-	public boolean aanwezig = true, checkedID = false;
+	
+	public List<String> getDrankenWens() {
+		return drankenWens;
+	}
+
+	public void setDrankenWens(List<String> drankenWens) {
+		this.drankenWens = drankenWens;
+	}
+
+	
 	public boolean isAanwezig() {
 		return aanwezig;
 	}
@@ -44,27 +88,15 @@ public abstract class Klant {
 		this.checkedID = checkedID;
 	}
 
-	public LocalTime binnenkomst;
-
-	public String[] blijeReactie = { " is blij", " is gelukkig", " glimlacht", " is tevreden", " lijkt dankbaar",
-			" is verheugd" };
-	public String[] nietBlijeReactie = { " lijkt geirriteerd", " lijkt geergerd", " reageert humeurig", " moppert",
-			" reageert chagrijnig", " zucht" };
-	public String[] wegloopReactie = { " en loopt weg.", " en verlaat het café.", " en vertrekt uit het café." };
-	public String[][][] reactieLeeftijd = { { { "\"Knijp gewoon een oogje dicht..\"", "\"Wat een slechte zaak\"" },
-			{ "\"Flauw hoor..\"", "\"Jammer dit..\"" }, { "\"Sorry, ik ben inderdaad te jong\"" }, { "\"Helaas..\"" } },
-			{ { "\"Geef me gewoon mijn drankje!\"", "\"Wat doe je nou moeilijk?!\"", "\"Schiet op!\"" },
-					{ "\"Ik ben inderdaad volwassen.\"", "\"Zie je wel?\"" },
-					{ "\"Ik snap dat je dit moest vragen.\"", "\"Geen probleem.\"" } } };
+	
 
 	public Klant() {
 		gedronkenDrankjes = new ArrayList<Drankje>();
 	}
 
-	Klant(int leeftijd, String naam, int geslacht, int geduldigheid, double geldOpZak, int aantalBestellingenWens) {
+	Klant(int leeftijd, String naam, int geduldigheid, double geldOpZak, int aantalBestellingenWens) {
 		this.leeftijd = leeftijd;
 		this.naam = naam;
-		this.geslacht = geslacht;
 		this.geduldigheid = geduldigheid;
 		this.geldOpZak = geldOpZak;
 		this.aantalBestellingenWens = aantalBestellingenWens;
@@ -161,8 +193,10 @@ public abstract class Klant {
 
 	public void binnenkomen(Cafe cafe, Klant nieuweklant, LocalTime currentTime) {
 		binnenkomst = currentTime;
-		drankenWens = new ArrayList<String>(cafe.drankenlijst);
-		Cafe.klantenlijst.add(nieuweklant);
+		drankenWens = new ArrayList<String>(cafe.getDrankenlijst());
+		List<Klant> templist = cafe.getKlantenlijst();
+		templist.add(nieuweklant);
+		cafe.setKlantenlijst(templist);//.set.Cafe.klantenlijst.add(nieuweklant);
 		System.out.printf("%n%s komt binnen om %s uur.", nieuweklant.naam, currentTime);
 	}
 

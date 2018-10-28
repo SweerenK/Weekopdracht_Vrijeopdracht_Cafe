@@ -31,8 +31,8 @@ public class KlantFactory {
 		}
 
 		return (randomKlant < 2)
-				? new Jeugd(random.nextInt(9) + 8, naam, geslacht, geduldigheid, geldOpZak, aantalBestellingenWens)
-				: new Volwassene(random.nextInt(70) + 18, naam, geslacht, geduldigheid, geldOpZak,
+				? new Jeugd(random.nextInt(9) + 8, naam, geduldigheid, geldOpZak, aantalBestellingenWens)
+				: new Volwassene(random.nextInt(70) + 18, naam, geduldigheid, geldOpZak,
 						aantalBestellingenWens);
 	}
 }

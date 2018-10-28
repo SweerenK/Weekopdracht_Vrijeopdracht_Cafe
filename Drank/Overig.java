@@ -1,7 +1,11 @@
 package weekopdracht_cafe.Drank;
 
-public class Overig extends Drankje{
+public class Overig extends Drankje implements WarmeDrank, MetKoekje{
 	int inhoudMililiter = 150;
+	
+	public void opwarmen() {
+		System.out.println("Je warmt de "+ getNaam() + " op.");
+	}
 
 	void schenken(Drankje... drank) {
 		System.out.println("Er wordt iets anders gebracht.");

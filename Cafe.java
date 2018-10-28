@@ -2,22 +2,36 @@ package weekopdracht_cafe;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.swing.event.ListSelectionEvent;
 
 import weekopdracht_cafe.Klant.Klant;
 
 public class Cafe {
-	private String naam = "Pubby";
+	private String naam = "Drankjewel";
 	private String[][][] dranken = {{{"Grolsch","5"},{"Amstel","5"}, {"Heineken","5"}}, {{"rode wijn","5"}, {"witte wijn","5"}}, {{"cognac","5"}, {"whiskey","5"}},
 			{{"koffie","25"}, {"thee","25"}}, {{"cola","10"}, {"sinas","10"}, {"7-Up","10"}}, {{"gin-tonic","5"}, {"baco","5"}}};
+	private double bedragInKas = 100.00;
+	private int reputatie = 50;
+	private int dagenOpen = 1;
+	private boolean inBusiness = true, adminMode = false;
+	private List<Klant> klantenlijst = new ArrayList<Klant>();
+	private List<String> drankenlijst = new ArrayList<String>();
 
+	private LocalTime openingstijd = LocalTime.of(18, 0);
+	private LocalTime sluitingstijd = LocalTime.of(2, 0);
+	
+	
+	public List<Klant> getKlantenlijst() {
+		return klantenlijst;
+	}
+
+	public void setKlantenlijst(List<Klant> klantenlijst) {
+		this.klantenlijst = klantenlijst;
+	}
+	public void setDrankenlijst(List<String> drankenlijst) {
+		this.drankenlijst = drankenlijst;
+	}
+	
 	public void setDranken(String content, int i, int j, int k) {
 		this.dranken[i][j][k] = content;
 	}
@@ -26,7 +40,6 @@ public class Cafe {
 		return this.dranken[i][j][k];
 	}
 
-	private double bedragInKas = 100.00;
 	public double getBedragInKas() {
 		return bedragInKas;
 	}
@@ -35,10 +48,24 @@ public class Cafe {
 		this.bedragInKas = bedragInKas;
 	}
 
-	private int reputatie = 50;
-	public int dagenOpen = 1;
-	public boolean inBusiness = true, adminMode = false;
+	public int getDagenOpen() {
+		return dagenOpen;
+	}
+
+	public void setDagenOpen(int dagenOpen) {
+		this.dagenOpen = dagenOpen;
+	}
+
 	
+	
+	public boolean isInBusiness() {
+		return inBusiness;
+	}
+
+	public void setInBusiness(boolean inBusiness) {
+		this.inBusiness = inBusiness;
+	}
+
 	public boolean isAdminMode() {
 		return adminMode;
 	}
@@ -47,11 +74,7 @@ public class Cafe {
 		this.adminMode = adminMode;
 	}
 
-	public static List<Klant> klantenlijst = new ArrayList<Klant>();
-	public List<String> drankenlijst = new ArrayList<String>();
-
-	private LocalTime openingstijd = LocalTime.of(18, 0);
-	private LocalTime sluitingstijd = LocalTime.of(2, 0);
+	
 
 	public List<String> getDrankenlijst() {
 		return drankenlijst;
