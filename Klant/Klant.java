@@ -10,12 +10,40 @@ import weekopdracht_cafe.Drank.Drankje;
 
 public abstract class Klant {
 	public String naam;
+	public String getNaam() {
+		return naam;
+	}
+
 	public int leeftijd, geslacht, geduldigheid, aantalBestellingenWens, aantalGedronkenDrankjes,
 			aantalGeweigerdeDrankjes;
+	public int getAantalGeweigerdeDrankjes() {
+		return aantalGeweigerdeDrankjes;
+	}
+
+	public void setAantalGeweigerdeDrankjes(int aantalGeweigerdeDrankjes) {
+		this.aantalGeweigerdeDrankjes = aantalGeweigerdeDrankjes;
+	}
+
 	public double geldOpZak;
 	public List<String> drankenWens;
 	public List<Drankje> gedronkenDrankjes;
-	public boolean aanwezig = true;
+	public boolean aanwezig = true, checkedID = false;
+	public boolean isAanwezig() {
+		return aanwezig;
+	}
+
+	public void setAanwezig(boolean aanwezig) {
+		this.aanwezig = aanwezig;
+	}
+
+	public boolean isCheckedID() {
+		return checkedID;
+	}
+
+	public void setCheckedID(boolean checkedID) {
+		this.checkedID = checkedID;
+	}
+
 	public LocalTime binnenkomst;
 
 	public String[] blijeReactie = { " is blij", " is gelukkig", " glimlacht", " is tevreden", " lijkt dankbaar",
@@ -45,8 +73,8 @@ public abstract class Klant {
 
 	abstract boolean bestellen(Drankje drink); // IDEE: var args?
 
-	void afrekenen() {
-		System.out.println("Het drankje wordt afgerekend.");
+	public void afrekenen(Drankje drankje) {
+		System.out.printf("%s rekent een %s af (€%.2f).%n", getNaam(), drankje.getNaam(), drankje.getVerkoopprijs());
 	}
 
 	public int getLeeftijd() {
@@ -148,10 +176,29 @@ public abstract class Klant {
 			temp--;
 		}
 
-		System.out.printf("%n%s vraagt: \t\"Heb je voor mij een %s?\"%n",naam,
-				drankenWens.get(aantalGedronkenDrankjes + aantalGeweigerdeDrankjes).toString());
+		maakWensKenbaar();
 	}
 
+	public void maakWensKenbaar() {
+		System.out.printf("%n%s vraagt: \t\"Heb je voor mij een %s?\"%n",naam,
+				drankenWens.get(0).toString());
+	}
+	
+	public String reactieOpGeweigerdDrankje(Drankje drankje) {
+		return "\"En waarom mag ik geen " + drankje.getNaam() + "?\"";
+	}
+	
+	public String reactieOpOnbeschofteManager(Klant klant) {
+		return "\"Dat is de druppel! Je zult me hier nooit meer zien!\"";
+	}
+	
+	public String reactieOpGeweigerdDrankjeEens() {
+		return "\"Je hebt gelijk.\"";
+	}
+	public String reactieOpGeweigerdDrankjeOneens() {
+		return "\"Dat ben ik niet met je eens!\"";
+	}
+	
 	public String getReactieLeeftijd() {
 		int geduld = (geduldigheid > 55) ? 2 : ((geduldigheid > 30) ? 1 : 0);
 		int age = (leeftijd < 17) ? 0 : 1;

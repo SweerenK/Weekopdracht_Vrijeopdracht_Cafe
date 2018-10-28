@@ -26,10 +26,27 @@ public class Cafe {
 		return this.dranken[i][j][k];
 	}
 
+	private double bedragInKas = 100.00;
+	public double getBedragInKas() {
+		return bedragInKas;
+	}
+
+	public void setBedragInKas(double bedragInKas) {
+		this.bedragInKas = bedragInKas;
+	}
+
 	private int reputatie = 50;
 	public int dagenOpen = 1;
-	public boolean inBusiness = true;
+	public boolean inBusiness = true, adminMode = false;
 	
+	public boolean isAdminMode() {
+		return adminMode;
+	}
+
+	public void setAdminMode(boolean adminMode) {
+		this.adminMode = adminMode;
+	}
+
 	public static List<Klant> klantenlijst = new ArrayList<Klant>();
 	public List<String> drankenlijst = new ArrayList<String>();
 
@@ -74,7 +91,7 @@ public class Cafe {
 
 	public void setReputatie(int i) {
 		System.out.println("Wijziging in reputatie café: " +  i + "\nNieuwe reputatie: " + (reputatie+i));
-		this.reputatie = reputatie + 1;
+		this.reputatie = reputatie + i;
 	}
 	
 	public Cafe() {

@@ -2,9 +2,13 @@ package weekopdracht_cafe;
 
 public class Menu {
 	String[] hoofdmenuOpties = { "Start spel", "Instellingen", "Stop spel" };
-	String[] instellingsOpties = {"Verander cafénaam", "Terug naar hoofdmenu"};
+	String[] instellingsOpties = {"Verander cafénaam", "Admin-mode instellen", "Simulatiesnelheid instellen", "Terug naar hoofdmenu"};
 	Cafe cafe;
+	Tijd tijd;
 	
+	public void setTijd(Tijd tijd) {
+		this.tijd = tijd;
+	}
 	public void setCafe(Cafe cafe) {
 		this.cafe = cafe;
 	}
@@ -44,11 +48,7 @@ public class Menu {
 				"Welkom in café " + cafe.getNaam() + ".\nWij serveren alleen drankjes.\nHet doel is om elke avond zoveel mogelijk klanten tevreden te stellen.");
 		Main.pressEnter();
 		System.out.println(
-				"We hanteren natuurlijk wel een aantal regels:\n1.\tGeen alcohol onder de 18.\n2.\tGeen dronkaards in ons café.\n3.\tDagelijks geopend van 18:00 - 02:00");
-		Main.pressEnter();
-		System.out.println(
-				"Na sluitingstijd maken we de balans op en kijken we wat we kunnen doen om de volgende dag meer omzet te genereren.\n\nAlles duidelijk? (j / n)");
-
+				"We hanteren natuurlijk wel een aantal regels:\n1.\tGeen alcohol onder de 18.\n2.\tNa 23:00 uur is jeugd niet toegestaan in het café.\n3.\tDagelijks geopend van 18:00 - 02:00 uur.\n\nAlles duidelijk? (j / n)");
 		if (!Main.checkYesOrNo(Main.scanner.nextLine())) {
 			printHoofdmenu();
 		}
@@ -70,6 +70,37 @@ public class Menu {
 			printInstellingsmenu();
 			break;
 		case 2:
+			if(cafe.isAdminMode()) {
+				System.out.println("1.\t[x]Ingeschakeld\n2.\tUitgeschakeld\n");
+			}else {
+				System.out.println("1.\tIngeschakeld\n2.\t[x]Uitgeschakeld\n");
+			}
+			System.out.println("Maak je keuze:");
+			boolean modus = (Main.scanner.nextInt()==1)? true : false;
+			Main.scanner.nextLine();
+			cafe.setAdminMode(modus);
+			printInstellingsmenu();
+			break;
+		case 3:
+			System.out.println("Welke simulatiesnelheid wens je? Maak je keuze:");
+			if(tijd.getSnelheid()>99) {
+				System.out.println("1.\tSnel\n2.\tNeutraal\n3.\t[x]Langzaam");
+			}else if(tijd.getSnelheid() < 26) {
+				System.out.println("1.\t[x]Snel\n2.\tNeutraal\n3.\tLangzaam");
+			}else {
+				System.out.println("1.\tSnel\n2.\t[x]Neutraal\n3.\tLangzaam");
+			}
+			
+			int keuze = Main.scanner.nextInt();
+			
+			if(keuze ==1) {
+				tijd.setSnelheid(25);
+			}else if(keuze ==2) {
+				tijd.setSnelheid(50);
+			}else {
+				tijd.setSnelheid(100);
+			}
+		case 4:
 			printHoofdmenu();
 		default:
 

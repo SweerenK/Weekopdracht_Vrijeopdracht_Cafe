@@ -37,6 +37,11 @@ public abstract class Drankje {
 	public void setAlcoholisch(boolean alcoholisch) {
 		this.alcoholisch = alcoholisch;
 	}
+	
+	@Override
+	public String toString() {
+		return naam;
+	}
 
 	//niet-getter/setter methodes:
 	abstract void schenken(Drankje... d);

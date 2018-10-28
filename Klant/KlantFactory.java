@@ -10,10 +10,10 @@ import weekopdracht_cafe.*;
 
 public class KlantFactory {
 	String[][] namenlijst = {
-			{ "Ali", "Arno", "Albert", "Bernard", "Ben", "Bob", "Charles", "David", "Dirk", "Danny", "Edward", "Eduart", "Ernst", "Fernando", "Frits", "Gerrit", "Henk", "Harrie", "Herman", "Ibrahim", "James","Jim","Jeffrey", "Karel", "Kevin",
-					"Leo", "Lennart","Louis", "Nick", "Patrick", "Peter", "Pieter", "Rodrick", "Remco", "Stefan", "Tim", "Tom", "Vincent", "Willem", "Wim" },
-			{ "Anne", "Anna", "Bea", "Bonnie", "Charlotte", "Claire","Daisy", "Emma", "Fiona", "Fenna", "Gerardi", "Gemma", "Hannah", "Ilse", "Janneke", "Jennie", "Kim", "Karin", "Monique", "Maaike",
-					"Megan", "Naomi", "Petra", "Renske", "Simone", "Svetlana", "Vera", "Viola" } };
+			{ "Ali", "Arno", "Albert", "Bernie", "Ben", "Bob", "Charles", "David", "Dirk", "Danny", "Edward", "Eduart", "Ernst", "Fred", "Frits", "Gerrit", "Henk", "Harrie", "Herman", "James","Jim","Jeff", "Karel", "Kevin",
+					"Leo", "Lennart","Louis", "Nick", "Peter", "Pieter", "Rick", "Rodrick", "Remco", "Stefan", "Tim", "Tom", "Vincent", "Willem", "Wim" },
+			{ "Anne", "Anna", "Bea", "Bonnie", "Charly", "Claire","Daisy", "Emma", "Fiona", "Fenna", "Gerardi", "Gemma", "Hannah", "Ilse", "Jannie", "Jennie", "Kim", "Karin", "Monica", "Maaike",
+					"Megan", "Naomi", "Petra", "Renske", "Simone", "Sjors", "Vera", "Viola" } };
 	Random random = new Random();
 
 	public Klant KlantFactory(Cafe cafe, LocalTime tijd) {

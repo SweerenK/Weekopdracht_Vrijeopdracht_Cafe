@@ -10,19 +10,31 @@ import weekopdracht_cafe.Klant.*;
 public class Tijd extends Thread {
 	int aantalVerwachteGasten = 2;
 	int aantalGenereerPogingen = 0;
+	private int snelheid = 50;
 	boolean klantAanwezig = false;
+	
+	
+	public int getSnelheid() {
+		return snelheid;
+	}
+
+	public void setSnelheid(int snelheid) {
+		this.snelheid = snelheid;
+	}
+
+	
 
 	public void run(Cafe cafe, Manager manager) {
 		while (aantalGenereerPogingen < 480) {
 			try {
 				genereerKlanten(cafe);
-				Thread.sleep(125);
+				Thread.sleep(snelheid);
 
 				if (klantAanwezig) {
 					Klant klant = Cafe.klantenlijst.get(cafe.klantenlijst.size() - 1);
 					while (klant.aanwezig && klant.drankenWens.size() != 0) {
 						Drankje drankje = new DrankjeFactory().getDrankje(klant.drankenWens.get(0));
-						manager.overweegActies(klant);
+						manager.overweegActies(klant, cafe);
 						manager.actieNaOverweging(cafe, klant, drankje, getIngameTijd(cafe));
 					}
 				}
