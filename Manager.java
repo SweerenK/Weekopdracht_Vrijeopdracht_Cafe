@@ -1,16 +1,9 @@
 package weekopdracht_cafe;
-
+//V19R17
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
-import weekopdracht_cafe.Drank.Drankje;
-import weekopdracht_cafe.Drank.MetKoekje;
-import weekopdracht_cafe.Drank.MetRietje;
-import weekopdracht_cafe.Drank.MetViltje;
-import weekopdracht_cafe.Drank.WarmeDrank;
+import weekopdracht_cafe.Drank.*;
 import weekopdracht_cafe.Klant.*;
 
 public class Manager extends Thread {

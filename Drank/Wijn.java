@@ -1,5 +1,5 @@
 package weekopdracht_cafe.Drank;
-
+//V1R0
 public class Wijn extends Drankje {
 	int inhoudMililiter = 150;
 

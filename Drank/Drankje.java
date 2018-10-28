@@ -1,5 +1,5 @@
 package weekopdracht_cafe.Drank;
-
+//V5R5
 public abstract class Drankje {
 	private String naam;
 	private Double verkoopprijs;

@@ -1,6 +1,5 @@
 package weekopdracht_cafe.Drank;
-
-import java.util.Arrays;
+//V1R0
 
 public class Bier extends Drankje implements MetViltje{
 	int inhoudMililiter = 330;

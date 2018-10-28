@@ -1,9 +1,6 @@
 package weekopdracht_cafe.Klant;
-
+//V0R1
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import weekopdracht_cafe.*;

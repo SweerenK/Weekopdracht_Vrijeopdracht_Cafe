@@ -1,12 +1,9 @@
 package weekopdracht_cafe;
-
+//V2R1
 import java.time.LocalTime;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import weekopdracht_cafe.Klant.Klant;
 
 public class Main {
 	static Scanner scanner = new Scanner(System.in);

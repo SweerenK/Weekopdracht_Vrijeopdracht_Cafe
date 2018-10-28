@@ -1,5 +1,5 @@
 package weekopdracht_cafe;
-
+//V8R1
 public class Menu {
 	private String[] hoofdmenuOpties = { "Start spel", "Instellingen", "Stop spel" };
 	private String[] instellingsOpties = { "Verander cafénaam", "Admin-mode instellen", "Simulatiesnelheid instellen",

@@ -1,5 +1,5 @@
 package weekopdracht_cafe.Drank;
-
+//V1R0
 public class Frisdrank extends Drankje implements MetRietje, MetViltje {
 	int inhoudMililiter = 200;
 

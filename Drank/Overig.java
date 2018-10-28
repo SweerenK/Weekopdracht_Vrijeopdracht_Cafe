@@ -1,5 +1,5 @@
 package weekopdracht_cafe.Drank;
-
+//V2R0
 public class Overig extends Drankje implements WarmeDrank, MetKoekje{
 	int inhoudMililiter = 150;
 	
